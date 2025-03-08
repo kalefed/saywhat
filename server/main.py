@@ -1,5 +1,11 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel
+
+
+class Sentence(BaseModel):
+    text: str
+
 
 app = FastAPI()
 
@@ -21,6 +27,6 @@ async def root():
     return {"message": "Hello World"}
 
 
-@app.get("/message")
-async def root():
-    return {"message": "Hi i am a message for you"}
+@app.put("/translation")
+async def set_sentence(sentence: Sentence):
+    return {"message": f"Received sentence: {sentence.text}"}
