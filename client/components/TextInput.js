@@ -22,16 +22,21 @@ export default function TextInput() {
   async function onSubmit(event) {
     event.preventDefault();
     update(sentence);
+
+    const response = await fetch("http://127.0.0.1:8000/translations", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json", // Make sure to set the Content-Type to application/json
+      },
+      body: JSON.stringify({ text: sentence }),
+    });
+
+    // Handle response if necessary
+    const data = await response.json();
+
+    console.log(data);
+
     router.push("translation");
-
-    // const formData = new FormData(event.target);
-    // const response = await fetch("/api/submit", {
-    //   method: "POST",
-    //   body: formData,
-    // });
-
-    // // Handle response if necessary
-    // const data = await response.json();
   }
 
   return (
