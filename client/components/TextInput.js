@@ -19,8 +19,23 @@ export default function TextInput() {
     setSentence(event.target.value);
   };
 
+  async function onSubmit(event) {
+    event.preventDefault();
+    update(sentence);
+    router.push("translation");
+
+    // const formData = new FormData(event.target);
+    // const response = await fetch("/api/submit", {
+    //   method: "POST",
+    //   body: formData,
+    // });
+
+    // // Handle response if necessary
+    // const data = await response.json();
+  }
+
   return (
-    <form className="flex gap-2 w-3/4">
+    <form className="flex gap-2 w-3/4" onSubmit={onSubmit}>
       <input
         type="text"
         name="term"
