@@ -17,13 +17,13 @@ export default function TextInput() {
 
   const textChange = (event) => {
     setSentence(event.target.value);
-    // update(event.target.value);
   };
 
   return (
     <form className="flex gap-2 w-3/4">
       <input
         type="text"
+        name="term"
         onChange={textChange}
         placeholder="Text to translate here"
         className="p-2 outline flex-3/4 rounded-md"
@@ -32,7 +32,7 @@ export default function TextInput() {
       />
       <button
         className="border rounded-md border-[#F3571D] text-[#F3571D] py-2 px-4"
-        onClick={translateClick}
+        type="submit"
       >
         Translate
       </button>
