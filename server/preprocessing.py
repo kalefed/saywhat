@@ -1,6 +1,6 @@
 import re
 import demoji
-from api.urban_dict import slang_words_def, get_slang_words
+from urban_dict_api import slang_words_def, get_slang_words
 
 class Preprocessing:
     @staticmethod
