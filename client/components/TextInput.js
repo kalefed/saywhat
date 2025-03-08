@@ -22,16 +22,17 @@ export default function TextInput() {
   async function onSubmit(event) {
     event.preventDefault();
     update(sentence);
-    router.push("translation");
 
     // const formData = new FormData(event.target);
-    // const response = await fetch("/api/submit", {
-    //   method: "POST",
-    //   body: formData,
-    // });
 
-    // // Handle response if necessary
-    // const data = await response.json();
+    const response = await fetch("http://127.0.0.1:8000/");
+
+    // Handle response if necessary
+    const data = await response.json();
+
+    console.log(data);
+
+    router.push("translation");
   }
 
   return (
