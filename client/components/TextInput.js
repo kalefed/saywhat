@@ -2,20 +2,22 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { sendTranslation } from "@/lib/action";
-import useStore from "@/lib/searchterm-store";
+import useSearchStore from "@/components/searchterm-store";
 
 export default function TextInput() {
   const router = useRouter();
+  const { search_term, update } = useSearchStore();
   const [sentence, setSentence] = useState("");
 
   const translateClick = (event) => {
     event.preventDefault();
+    update(sentence);
     router.push("translation");
   };
 
   const textChange = (event) => {
     setSentence(event.target.value);
+    // update(event.target.value);
   };
 
   return (
