@@ -28,8 +28,14 @@ export default function TextInput() {
         placeholder="Text to translate here"
         className="p-2 outline flex-3/4 rounded-md"
         value={sentence}
+        required
       />
-      <button onClick={translateClick}>Translate</button>
+      <button
+        className="border rounded-md border-[#F3571D] text-[#F3571D] py-2 px-4"
+        onClick={translateClick}
+      >
+        Translate
+      </button>
     </form>
   );
 }
