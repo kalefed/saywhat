@@ -27,6 +27,6 @@ async def root():
     return {"message": "Hello World"}
 
 
-@app.put("/translation")
+@app.put("/translations")
 async def set_sentence(sentence: Sentence):
     return {"message": f"Received sentence: {sentence.text}"}

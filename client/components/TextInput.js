@@ -23,11 +23,7 @@ export default function TextInput() {
     event.preventDefault();
     update(sentence);
 
-    // const formData = new FormData(event.target);
-
-    // const response = await fetch("http://127.0.0.1:8000/");
-
-    const response = await fetch("http://127.0.0.1:8000/translation", {
+    const response = await fetch("http://127.0.0.1:8000/translations", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json", // Make sure to set the Content-Type to application/json
