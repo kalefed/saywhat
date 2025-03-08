@@ -35,6 +35,7 @@ async def set_sentence(sentence: Sentence):
     try:
         pre = Preprocessing()
 
+        # add API key
         connector = OpenAI.OpenAIConnector(api_key=api_key, model="gpt-4o")
 
         slang_words = pre.read_csv("all_slangs.csv")
@@ -45,7 +46,7 @@ async def set_sentence(sentence: Sentence):
         translation = connector.prompt(prompt)
         print(translation)
 
-        return {"message": f"Received sentence: {sentence.text}"}
+        return {sentence.text, translation}
 
     except Exception as e:
         print(f"Error occurred: {str(e)}")

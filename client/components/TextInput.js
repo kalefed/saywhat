@@ -6,12 +6,12 @@ import useSearchStore from "@/components/searchterm-store";
 
 export default function TextInput() {
   const router = useRouter();
-  const { search_term, update } = useSearchStore();
+  const { search_term, update_term, update_trans_term } = useSearchStore();
   const [sentence, setSentence] = useState("");
 
   const translateClick = (event) => {
     event.preventDefault();
-    update(sentence);
+    update_term(sentence);
     router.push("translation");
   };
 
@@ -21,7 +21,7 @@ export default function TextInput() {
 
   async function onSubmit(event) {
     event.preventDefault();
-    update(sentence);
+    update_term(sentence);
 
     const response = await fetch("http://127.0.0.1:8000/translations", {
       method: "PUT",
@@ -35,6 +35,8 @@ export default function TextInput() {
     const data = await response.json();
 
     console.log(data);
+
+    update_trans_term(data[1]);
 
     router.push("translation");
   }
