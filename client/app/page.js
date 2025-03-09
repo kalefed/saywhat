@@ -14,8 +14,16 @@ export default function Home() {
           width={500}
           height={500}
           alt="Picture of the author"
-          className="my-10"
+          className="mt-10 mb-4"
         />
+        <p className="text-center w-3/4 text-[#F3571D]">
+          Confused by a message you received? Put it in the box below to
+          translate from slang to plain language.
+        </p>
+        <p className="text-center w-3/4 text-[#aaaaaa] mb-10">
+          Bonus: we’ll let you know if the connotation was positive or negative
+          overall.
+        </p>
         <TextInput />
       </div>
     </Fadein>
