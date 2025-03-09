@@ -6,12 +6,17 @@ import useSearchStore from "@/components/searchterm-store";
 
 export default function TextInput() {
   const router = useRouter();
-  const { search_term, update } = useSearchStore();
+  const {
+    search_term,
+    update_search_term,
+    update_trans_term,
+    update_sentiment,
+  } = useSearchStore();
   const [sentence, setSentence] = useState("");
 
   const translateClick = (event) => {
     event.preventDefault();
-    update(sentence);
+    update_search_term(sentence);
     router.push("translation");
   };
 
@@ -21,7 +26,7 @@ export default function TextInput() {
 
   async function onSubmit(event) {
     event.preventDefault();
-    update(sentence);
+    update_search_term(sentence);
 
     const response = await fetch("http://127.0.0.1:8000/translations", {
       method: "PUT",
@@ -35,6 +40,9 @@ export default function TextInput() {
     const data = await response.json();
 
     console.log(data);
+
+    update_trans_term(data.translation);
+    update_sentiment(data.sentiment);
 
     router.push("translation");
   }
@@ -51,7 +59,7 @@ export default function TextInput() {
         required
       />
       <button
-        className="border rounded-md border-[#F3571D] text-[#F3571D] py-2 px-4"
+        className="border rounded-md border-[#F3571D] text-[#F3571D] py-2 px-4 hover:bg-[#F3571D] hover:text-white"
         type="submit"
       >
         Translate

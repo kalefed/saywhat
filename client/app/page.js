@@ -6,9 +6,6 @@ export default function Home() {
   return (
     <Fadein>
       <div className="flex flex-col my-20 mx-20 items-center">
-        {/* <div>
-        <h1 className="text-center text-3xl py-4 font-bold">What was that?</h1>
-      </div> */}
         <Image
           src="/titleArt.png"
           width={500}
@@ -16,6 +13,14 @@ export default function Home() {
           alt="Picture of the author"
           className="my-10"
         />
+        <p className="text-[#F3571D]">
+          Confused by a message you received? Put it in the box below to
+          translate from slang to plain language
+        </p>
+        <p className="text-[#b3b3b3] mb-10">
+          Bonus: we’ll let you know if the connotation was positive or negative
+          overall.
+        </p>
         <TextInput />
       </div>
     </Fadein>

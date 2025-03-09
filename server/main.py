@@ -6,6 +6,7 @@ from sentiment_analysis import analyze_sentiment
 import OpenAI
 import os
 
+
 class Sentence(BaseModel):
     text: str
 
@@ -34,14 +35,19 @@ async def root():
 async def set_sentence(sentence: Sentence):
     pre = Preprocessing()
 
-    
-    connector = OpenAI.OpenAIConnector(api_key=api_key, model="gpt-4o", temperature = 0.0)
+    # add API key here
+    connector = OpenAI.OpenAIConnector(api_key=api_key, model="gpt-4o", temperature=0.0)
     slang_words = pre.read_csv("all_slangs.csv")
-    processed_text = pre.clean_text(sentence.text,slang_words)
-    prompt = "Message:"+ sentence.text + "\n Meaning:"+ processed_text
+    processed_text = pre.clean_text(sentence.text, slang_words)
+    prompt = "Message:" + sentence.text + "\n Meaning:" + processed_text
     translation = connector.prompt(prompt)
     print(translation)
 
     sentiment = analyze_sentiment(translation)
-    
-    return {sentence.text, translation, sentiment}
+
+    response = {
+        "sentence_text": sentence.text,
+        "translation": translation.replace("Message: ", ""),
+        "sentiment": sentiment,
+    }
+    return response
